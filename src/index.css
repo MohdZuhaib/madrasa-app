@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .bg-gradient-app {
+    background: linear-gradient(180deg, #F0EAFB -17.28%, #FFFFFF 78.01%);
+  }
+}
+
+#navbar{
+   box-shadow: 0 1px 2px 0 var(--Primitives-Neutral-200, #E5E5E5);
+}
+
+body {
+  @apply font-sans;
+}
+
+
+
+
+/* Custom slider styling */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #3b82f6;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+input[type=range]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #3b82f6;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
