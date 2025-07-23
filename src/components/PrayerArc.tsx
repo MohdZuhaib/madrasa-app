@@ -1,25 +1,18 @@
+import { getPrayerProgressSegments } from "../helpers";
+import { usePrayerStore } from "../store/prayerStore";
 import SegmentedArcProgress from "./SegmentedArcProgress";
 
-const ArcProgress = ({
-  size = 200,
-}) => {
+const ArcProgress = () => {
 
+  const { prayerTimes } = usePrayerStore();
+  const segments = getPrayerProgressSegments(prayerTimes);
 
 
   return (
     <div className="overflow-clip -mx-12 -mt-4 -mb-1">
-
       <SegmentedArcProgress
-        segments={[
-          { percent: 1 },
-          { percent: 0.7 },
-          { percent: 0 },
-          { percent: 0 },
-          { percent: 0 },
-        ]}
+        segments={segments.map(p => ({ percent: p }))}
       />
-
-
 
     </div>
   );

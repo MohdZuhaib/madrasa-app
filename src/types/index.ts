@@ -2,7 +2,6 @@
 import { IconProps } from '@phosphor-icons/react';
 
 
-// type IconComponent = React.ComponentType<IconProps>;
 export type IconComponent = (props: IconProps) => JSX.Element;
 
 export interface PrayerTime {
@@ -10,7 +9,6 @@ export interface PrayerTime {
   name: string;
   time: string;
   icon: string;
-  isCompleted?: boolean;
 }
 export interface FetchPrayerTime {
   latitude?: number;
@@ -19,5 +17,10 @@ export interface FetchPrayerTime {
 
 export interface PrayerTimesState {
   prayerTimes: PrayerTime[];
+  currentPrayer?: string;
+  currentPrayerIcon?: string;
+  nextPrayer?: string;
+  timeToNextText?: string;
   fetchPrayerTimes: (FetchPrayerTime: FetchPrayerTime) => void;
+  getPrayerStatus: () => void;
 }
