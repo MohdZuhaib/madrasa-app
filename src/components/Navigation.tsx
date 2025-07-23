@@ -1,12 +1,13 @@
+import { HouseSimpleIcon, BookOpenTextIcon, MosqueIcon, ListHeartIcon, CirclesThreePlusIcon } from '@phosphor-icons/react';
 import React from 'react';
-import { Home, BookOpen, GraduationCap, Heart } from 'lucide-react';
 
 export const Navigation: React.FC = () => {
   const navItems = [
-    { icon: Home, label: 'Home', active: true },
-    { icon: BookOpen, label: 'Quran', active: false },
-    { icon: GraduationCap, label: 'Madrasa', active: false },
-    { icon: Heart, label: 'Dua', active: false },
+    { icon: HouseSimpleIcon, label: 'Home', active: true },
+    { icon: BookOpenTextIcon, label: 'Quran', active: false },
+    { icon: CirclesThreePlusIcon, label: 'App', active: false },
+    { icon: MosqueIcon, label: 'Madrasa', active: false },
+    { icon: ListHeartIcon, label: 'Dua', active: false },
   ];
 
   return (
@@ -15,12 +16,11 @@ export const Navigation: React.FC = () => {
         {navItems.map((item, index) => (
           <div
             key={index}
-            className={`flex flex-col items-center gap-1 cursor-pointer transition-colors ${
-              item.active ? 'text-purple-600' : 'text-gray-500'
-            }`}
+            className={`flex flex-col items-center gap-1 cursor-pointer transition-colors ${item.active ? 'text-purple-600' : 'text-gray-500'
+              }`}
           >
             <div className={`p-2 rounded-full ${item.active ? 'bg-purple-100' : ''}`}>
-              <item.icon size={20} />
+              <item.icon size={22} />
             </div>
             <span className="text-xs font-medium">{item.label}</span>
           </div>

@@ -86,7 +86,7 @@ const useLocationStore = create<LocationState>()(
             },
         }),
         {
-            name: 'location-storage', // 🔐 localStorage key
+            name: 'location-storage', // localStorage key
             partialize: (state) => ({
                 city: state.city,
                 country: state.country,

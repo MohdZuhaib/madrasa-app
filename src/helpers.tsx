@@ -16,13 +16,25 @@ export const defaultPrayerTimes: PrayerTime[] = [
 ];
 
 
-export const iconRenderer: Record<string, JSX.Element> = {
-    CloudMoonIcon: <CloudMoonIcon size={32} weight="light" />,
-    CloudSunIcon: <CloudSunIcon size={32} weight="light" />,
-    MoonStarsIcon: <MoonStarsIcon size={32} weight="light" />,
-    SunHorizonIcon: <SunHorizonIcon size={32} weight="light" />,
-    SunIcon: <SunIcon size={32} weight="light" />,
-}
+// export const iconRenderer: Record<string, JSX.Element> = {
+//     CloudMoonIcon: <CloudMoonIcon size={32} weight="light" />,
+//     CloudSunIcon: <CloudSunIcon size={32} weight="light" />,
+//     MoonStarsIcon: <MoonStarsIcon size={32} weight="light" />,
+//     SunHorizonIcon: <SunHorizonIcon size={32} weight="light" />,
+//     SunIcon: <SunIcon size={32} weight="light" />,
+// }
+
+export const iconRenderer = (iconName: string, size: number = 32) => {
+    const icons: Record<string, JSX.Element> = {
+        CloudMoonIcon: <CloudMoonIcon size={size} weight="light" />,
+        CloudSunIcon: <CloudSunIcon size={size} weight="light" />,
+        MoonStarsIcon: <MoonStarsIcon size={size} weight="light" />,
+        SunHorizonIcon: <SunHorizonIcon size={size} weight="light" />,
+        SunIcon: <SunIcon size={size} weight="light" />,
+    };
+
+    return icons[iconName] ?? null;
+};
 
 
 
@@ -60,3 +72,6 @@ export function getPrayerProgressSegments(prayerTimes: PrayerTime[]): number[] {
         return Math.min(1, Math.max(0, parseFloat(percent.toFixed(4))));
     });
 }
+
+
+

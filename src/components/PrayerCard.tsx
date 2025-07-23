@@ -18,6 +18,12 @@ export const PrayerCard: React.FC = () => {
     if (prayerTimes) {
       getPrayerStatus()
     }
+
+    const interval = setInterval(() => {
+      getPrayerStatus();
+    }, 60 * 1000); // every 60 seconds
+
+    return () => clearInterval(interval);
   }, [prayerTimes, getPrayerStatus])
 
   useEffect(() => {
@@ -26,14 +32,14 @@ export const PrayerCard: React.FC = () => {
     }
   }, [latitude, longitude, fetchPrayerTimes])
 
-
+  console.log('currentPrayer,currentPrayer', currentPrayer)
   return (
-    <div className={`p-5 pb-0 space-y-5 w-full text-white rounded-extra-round salah-card__container bg-${currentPrayer} overflow-clip`}>
-      <div className="flex justify-between items-center mb-2">
+    <div className={`py-6 px-4  pb-0 space-y-5 w-full max-w-md text-white rounded-extra-round salah-card__container bg-${currentPrayer} overflow-clip`}>
+      <div className="flex justify-between items-start mb-2">
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-xl">{currentPrayerIcon && iconRenderer[currentPrayerIcon]}</span>
-            <h3 className="text-2xl font-semibold">{currentPrayer}</h3>
+            <span>{currentPrayerIcon && iconRenderer(currentPrayerIcon, 28)}</span>
+            <h3 className="text-3xl font-bold">{currentPrayer}</h3>
           </div>
           <p className="text-sm m-0">{timeToNextText}</p>
         </div>
@@ -41,15 +47,15 @@ export const PrayerCard: React.FC = () => {
       </div>
 
 
-      <div className="grid grid-cols-5 gap-2 text-center text-sm mb-6">
+      <div className="flex mx-auto items-center justify-between">
 
         {prayerTimes?.map((p) => {
-          const Icon = iconRenderer[p.icon]
+          const Icon = iconRenderer(p.icon, 24)
           return (
             <div key={p.name} className={`flex flex-col items-center text-sm ${currentPrayer !== p.name && 'opacity-50'}`} >
               {Icon}
-              <p>{p.name}</p>
-              <p>{moment(p.time, 'HH:mm').format('hh:mm A')}</p>
+              <p className='font-medium mt-2'>{p.name}</p>
+              <p className='font-normal'>{moment(p.time, 'HH:mm').format('hh:mm A')}</p>
             </div>
           );
         })}
