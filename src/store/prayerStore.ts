@@ -1,34 +1,46 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import axios from 'axios';
+import moment from 'moment';
 import { PrayerTime, PrayerTimesState } from '../types';
+import { defaultPrayerTimes } from '../staticData';
 
-const defaultPrayerTimes: PrayerTime[] = [
-  { id: '1', name: 'Fajr', time: '05:30', isCompleted: false },
-  { id: '2', name: 'Dhuhr', time: '12:30', isCompleted: false },
-  { id: '3', name: 'Asr', time: '15:45', isCompleted: false },
-  { id: '4', name: 'Maghrib', time: '18:20', isCompleted: false },
-  { id: '5', name: 'Isha', time: '20:00', isCompleted: false },
-];
+
 
 export const usePrayerStore = create<PrayerTimesState>()(
   persist(
     (set) => ({
       prayerTimes: defaultPrayerTimes,
-      setPrayerTimes: (times) => set({ prayerTimes: times }),
-      togglePrayerCompletion: (id) =>
-        set((state) => ({
-          prayerTimes: state.prayerTimes.map((prayer) =>
-            prayer.id === id
-              ? { ...prayer, isCompleted: !prayer.isCompleted }
-              : prayer
-          ),
-        })),
-      updatePrayerTime: (id, time) =>
-        set((state) => ({
-          prayerTimes: state.prayerTimes.map((prayer) =>
-            prayer.id === id ? { ...prayer, time } : prayer
-          ),
-        })),
+
+      setPrayerTimes: (times: PrayerTime[]) => set({ prayerTimes: times }),
+
+
+
+      // ✅ Async action to fetch prayer times from API
+      fetchPrayerTimes: async (params) => {
+        const { latitude, longitude } = params;
+        const date = moment().format('DD-MM-YYYY');
+        try {
+          const response = await axios.get(
+            `https://api.aladhan.com/v1/timings/${date}?latitude=${latitude}&longitude=${longitude}`,
+
+          );
+
+          const timings = response.data.data.timings;
+
+          const updatedPrayerTimes: PrayerTime[] = defaultPrayerTimes.map((prayer) => {
+            const newTime = timings[prayer.name as keyof typeof timings]; // Match by name
+            return {
+              ...prayer,
+              time: newTime || prayer.time, // fallback to old time if not found
+            };
+          });
+
+          set({ prayerTimes: updatedPrayerTimes });
+        } catch (error) {
+          console.error('Failed to fetch prayer times:', error);
+        }
+      },
     }),
     {
       name: 'prayer-times-storage',

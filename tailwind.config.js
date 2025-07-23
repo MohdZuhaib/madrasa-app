@@ -6,9 +6,12 @@ export default {
       fontFamily: {
         sans: ['Geist', 'sans-serif'], // Override default "sans"
       },
+      borderRadius: {
+        'extra-round': '16px',
+      },
       backgroundImage: {
         'header': 'linear-gradient(180deg, #F0EAFB -17.28%, #FFFFFF 78.01%)',
-        'isha': 'linear-gradient(0deg,#811dec -4.44%,#381079)',
+        'Isha': 'linear-gradient(0deg,#811dec -4.44%,#381079)',
       },
     },
   },
