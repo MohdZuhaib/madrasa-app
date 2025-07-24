@@ -22,6 +22,9 @@ export default {
       borderRadius: {
         'extra-round': '16px',
       },
+      boxShadow: {
+        'custom-top': '0px -5px 20px 0px #00000008',
+      },
       backgroundImage: {
         'header': 'linear-gradient(180deg, #F0EAFB -17.28%, #FFFFFF 78.01%)',
         'Fajr': 'linear-gradient(360deg, #D6BDFF 0%, #3F7CE6 97.7%)',

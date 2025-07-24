@@ -4,7 +4,7 @@ const NotFound = () => {
     const navigate = useNavigate();
     const handleHome = () => navigate('/')
     return (
-        <div className='flex flex-col justify-center items-center p-2 gap-4 h-[80dvh]'>
+        <div className='flex flex-col justify-center items-center p-2 gap-4'>
 
             <h2 className='font-bold text-xl'>OOps!</h2>
             <p>Page you're looking for is not found</p>

@@ -6,7 +6,7 @@ export const Navigation: React.FC = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200">
+    <div className="bottom-0 left-0 right-0 bg-white shadow-custom-top">
       <div className="flex justify-around py-3">
         {navItems.map((item, index) => (
           <Link
