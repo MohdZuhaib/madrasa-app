@@ -1,29 +1,30 @@
-import { HouseSimpleIcon, BookOpenTextIcon, MosqueIcon, ListHeartIcon, CirclesThreePlusIcon } from '@phosphor-icons/react';
 import React from 'react';
+import { activeLinkChecker, navItems } from '../helpers';
+import { Link, useLocation } from 'react-router-dom';
 
 export const Navigation: React.FC = () => {
-  const navItems = [
-    { icon: HouseSimpleIcon, label: 'Home', active: true },
-    { icon: BookOpenTextIcon, label: 'Quran', active: false },
-    { icon: CirclesThreePlusIcon, label: 'App', active: false },
-    { icon: MosqueIcon, label: 'Madrasa', active: false },
-    { icon: ListHeartIcon, label: 'Dua', active: false },
-  ];
+  const { pathname } = useLocation();
 
   return (
     <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200">
       <div className="flex justify-around py-3">
         {navItems.map((item, index) => (
-          <div
+          <Link
+            to={item.route}
             key={index}
-            className={`flex flex-col items-center gap-1 cursor-pointer transition-colors ${item.active ? 'text-purple-600' : 'text-gray-500'
+            className={`flex flex-col items-center gap-1 cursor-pointer transition-colors ${activeLinkChecker(pathname, item.route) ? 'text-primary-500' : 'text-gray-500'
               }`}
           >
-            <div className={`p-2 rounded-full ${item.active ? 'bg-purple-100' : ''}`}>
-              <item.icon size={22} />
-            </div>
-            <span className="text-xs font-medium">{item.label}</span>
-          </div>
+            {item.label === 'Menu' ? <div className='bg-gradient-button p-2 rounded-full'>
+              <item.icon size={22} color='#fff' weight="fill" />
+            </div> : <>
+              <div>
+                <item.icon size={22} />
+              </div>
+              <span className={`text-xs ${activeLinkChecker(pathname, item.route) && 'font-bold'}`}>{item.label}</span>
+            </>}
+
+          </Link>
         ))}
       </div>
     </div>

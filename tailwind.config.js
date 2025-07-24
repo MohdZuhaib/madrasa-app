@@ -29,11 +29,14 @@ export default {
         'Asr': 'linear-gradient(180deg, #006C5E -8.39%, #C9F3B3 103.29%)',
         'Maghrib': 'linear-gradient(360deg, #FF88A8 0%, #FF9452 100%)',
         'Isha': 'linear-gradient(360deg, #811DEC -4.44%, #381079 100%)',
+        'gradient-button': 'linear-gradient(35.2deg, #6D2DD3 -25.33%, #FBD2FF 156.54%)'
       },
     },
   },
   plugins: [],
 };
+
+
 
 
 

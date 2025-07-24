@@ -32,7 +32,6 @@ export const PrayerCard: React.FC = () => {
     }
   }, [latitude, longitude, fetchPrayerTimes])
 
-  console.log('currentPrayer,currentPrayer', currentPrayer)
   return (
     <div className={`py-6 px-4  pb-0 space-y-5 w-full max-w-md text-white rounded-extra-round salah-card__container bg-${currentPrayer} overflow-clip`}>
       <div className="flex justify-between items-start mb-2">

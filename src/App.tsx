@@ -1,8 +1,7 @@
-import { PrayerCard } from './components/PrayerCard';
-import { Navigation } from './components/Navigation';
-import { Header } from './components/Header';
 import { useEffect } from 'react';
 import useLocationStore from './store/locationStore';
+import { BrowserRouter } from 'react-router-dom';
+import Router from './config/routes';
 
 function App() {
   const fetchLocation = useLocationStore((state) => state.fetchLocation);
@@ -13,14 +12,9 @@ function App() {
 
   return (
     <div>
-      <Header />
-
-      <div className="px-4 pb-20">
-        <PrayerCard
-        />
-      </div>
-
-      <Navigation />
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
     </div>
 
   );

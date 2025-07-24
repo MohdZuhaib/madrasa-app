@@ -1,11 +1,8 @@
-import { CloudMoonIcon, CloudSunIcon, MoonStarsIcon, SunHorizonIcon, SunIcon } from '@phosphor-icons/react';
+import { CloudMoonIcon, CloudSunIcon, MoonStarsIcon, SunHorizonIcon, SunIcon, HouseSimpleIcon, BookOpenTextIcon, MosqueIcon, ListHeartIcon, CirclesThreePlusIcon } from '@phosphor-icons/react';
 
 
 import { PrayerTime } from './types';
 import moment from 'moment';
-
-
-
 
 export const defaultPrayerTimes: PrayerTime[] = [
     { id: '1', name: 'Fajr', time: '', icon: "CloudMoonIcon" },
@@ -15,14 +12,6 @@ export const defaultPrayerTimes: PrayerTime[] = [
     { id: '5', name: 'Isha', time: '', icon: "MoonStarsIcon" },
 ];
 
-
-// export const iconRenderer: Record<string, JSX.Element> = {
-//     CloudMoonIcon: <CloudMoonIcon size={32} weight="light" />,
-//     CloudSunIcon: <CloudSunIcon size={32} weight="light" />,
-//     MoonStarsIcon: <MoonStarsIcon size={32} weight="light" />,
-//     SunHorizonIcon: <SunHorizonIcon size={32} weight="light" />,
-//     SunIcon: <SunIcon size={32} weight="light" />,
-// }
 
 export const iconRenderer = (iconName: string, size: number = 32) => {
     const icons: Record<string, JSX.Element> = {
@@ -74,4 +63,13 @@ export function getPrayerProgressSegments(prayerTimes: PrayerTime[]): number[] {
 }
 
 
+export const navItems = [
+    { icon: HouseSimpleIcon, label: 'Home', route: '/' },
+    { icon: BookOpenTextIcon, label: 'Quran', route: '/quran' },
+    { icon: CirclesThreePlusIcon, label: 'Menu', route: '/menu' },
+    { icon: MosqueIcon, label: 'Maktab', route: '/maktab' },
+    { icon: ListHeartIcon, label: 'Dua', route: '/dua' },
+];
+
+export const activeLinkChecker = (currentRoute: string, objectRoute: string) => objectRoute === currentRoute
 
