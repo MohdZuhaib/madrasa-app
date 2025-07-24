@@ -5,6 +5,7 @@ import { usePrayerStore } from '../store/prayerStore';
 import useLocationStore from '../store/locationStore';
 import { iconRenderer } from '../helpers';
 import moment from 'moment';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 export const PrayerCard: React.FC = () => {
@@ -28,7 +29,7 @@ export const PrayerCard: React.FC = () => {
 
   useEffect(() => {
     if (latitude && longitude) {
-      fetchPrayerTimes({ latitude, longitude })
+      fetchPrayerTimes({ latitude, longitude, toast })
     }
   }, [latitude, longitude, fetchPrayerTimes])
 
@@ -62,6 +63,7 @@ export const PrayerCard: React.FC = () => {
 
       {/* Dynamic Time Arc */}
       <ArcProgress />
+      <ToastContainer />
     </div>
 
   );

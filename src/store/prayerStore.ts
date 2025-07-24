@@ -19,7 +19,7 @@ export const usePrayerStore = create<PrayerTimesState>()(
 
       // ✅ Async action to fetch prayer times from API
       fetchPrayerTimes: async (params: FetchPrayerTime) => {
-        const { latitude, longitude } = params;
+        const { latitude, longitude, toast } = params;
         const date = moment().format('DD-MM-YYYY');
         try {
           const response = await axios.get(
@@ -39,6 +39,7 @@ export const usePrayerStore = create<PrayerTimesState>()(
           set({ prayerTimes: updatedPrayerTimes });
         } catch (error) {
           console.error('Failed to fetch prayer times:', error);
+          toast?.error('Failed to fetch prayer times');
         }
       },
 

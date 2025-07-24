@@ -1,5 +1,7 @@
 
 import { IconProps } from '@phosphor-icons/react';
+import { toast } from 'react-toastify';
+
 
 
 export type IconComponent = (props: IconProps) => JSX.Element;
@@ -13,6 +15,7 @@ export interface PrayerTime {
 export interface FetchPrayerTime {
   latitude?: number;
   longitude?: number;
+  toast?: typeof toast;
 }
 
 export interface PrayerTimesState {
