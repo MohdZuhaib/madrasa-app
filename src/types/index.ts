@@ -24,3 +24,12 @@ export interface PrayerTimesState {
   fetchPrayerTimes: (FetchPrayerTime: FetchPrayerTime) => void;
   getPrayerStatus: () => void;
 }
+export interface LocationState {
+  city: string;
+  country: string;
+  longitude?: number;
+  latitude?: number;
+  error: string;
+  loading: boolean;
+  fetchLocation: () => void;
+}

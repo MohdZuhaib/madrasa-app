@@ -1,19 +1,12 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { LocationState } from '../types';
 
-interface LocationState {
-    city: string;
-    country: string;
-    longitude?: number;
-    latitude?: number;
-    error: string;
-    loading: boolean;
-    fetchLocation: () => void;
-}
+
 
 const useLocationStore = create<LocationState>()(
     persist(
-        (set) => ({
+        (set, get) => ({
             city: '',
             country: '',
             error: '',
@@ -22,6 +15,11 @@ const useLocationStore = create<LocationState>()(
             loading: true,
 
             fetchLocation: async () => {
+                const existingValues = get();
+                // Do not call api if already has location values.
+                if (existingValues.latitude && existingValues.longitude) {
+                    return;
+                }
                 const fetchFromIP = async () => {
                     try {
                         const res = await fetch('https://ipapi.co/json/');

@@ -2,7 +2,7 @@ import { useRoutes, RouteObject } from "react-router-dom";
 import Home from '../containers/Home';
 import DashboardLayout from '../layouts/DashboardLayout'; // Make sure you import this if not already
 import React from "react";
-import NotFound from "../containers/notFound";
+import NotFound from "../containers/NotFound";
 
 const Router: React.FC = () => {
     const routes: RouteObject[] = [
